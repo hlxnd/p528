@@ -60,7 +60,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4.6.2
       with:
-        name: p528-dist
+        name: p528-dist-${{ matrix.platform }}
         path: ./artifact-staging
 
   merge:
