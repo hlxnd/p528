@@ -74,16 +74,19 @@ jobs:
 
   release:
     needs: merge
-    runs-on: windows-2022
+    runs-on: ubuntu-latest
     steps:
       - name: Download merged artifact
         uses: actions/download-artifact@v4
         with:
           name: p528-dist
-
+      - name: Generate tag name with datetime
+        id: tag
+        run: echo "TAG_NAME=release-$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
       - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ env.TAG_NAME }}
           files: p528-dist/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
