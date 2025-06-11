@@ -25,7 +25,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     strategy:
       matrix:
@@ -62,3 +62,28 @@ jobs:
       with:
         name: p528-dist
         path: ./artifact-staging
+
+  merge:
+    runs-on: windows-2022
+    needs: build
+    steps:
+      - name: Merge Artifacts
+        uses: actions/upload-artifact/merge@v4
+        with:
+          name: p528-dist
+
+  release:
+    needs: merge
+    runs-on: windows-2022
+    steps:
+      - name: Download merged artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: p528-dist
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: p528-dist/**
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
