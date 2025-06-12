@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\p528.h" />
+    <ClInclude Include="..\include\p528ex.h" />
     <ClInclude Include="..\include\p676.h" />
     <ClInclude Include="..\include\p835.h" />
     <ClInclude Include="resource.h" />

@@ -13,6 +13,9 @@
     <ClInclude Include="..\include\p676.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\p528ex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="p835">
